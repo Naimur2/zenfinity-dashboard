@@ -1,0 +1,40 @@
+@import '../styles/settings/_settings';
+
+.container {
+    padding-top: 2rem !important;
+    .upper-section {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem !important;
+    }
+    .list {
+        list-style: upper-latin;
+        li::marker {
+            font-size: 1.4em !important;
+        }
+    }
+}
+
+.create-update-container {
+    padding-top: 2rem;
+    .upper-section {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem !important;
+    }
+
+    .add-answer-wrapper {
+        margin-top: 1rem !important;
+    }
+    .action-section {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+}

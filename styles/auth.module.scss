@@ -1,0 +1,139 @@
+@use 'var';
+@import '../styles/settings/_settings';
+
+.loginContainer{
+    font-family: var.$font-stack !important;
+    background-color: $primary1-color;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0px 20px;
+    height: 100vh;
+    .logoHeader{
+        margin: 60px auto 32px !important;
+        text-align: center;
+        .imgBox{
+            width: 150px;
+        }
+    }
+    .authBox{
+        width: 300px;
+        background: #fff;
+        border: 1px solid #f5f7fa;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
+        display: flex;
+        flex-direction: column;
+        padding: 40px;
+        .forget_password{
+            font-size: 12px;
+            text-decoration: none !important;
+            text-transform: capitalize;
+            text-align: right;
+            color: #5473e8;
+            font-weight: 600;
+        }
+    
+        .resend_otp{
+            font-size: 12px;
+            text-decoration: none !important;
+            text-transform: capitalize;
+            text-align: right;
+            color: #5473e8;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        h4{
+            
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: var.$h4-font-size;
+            color: #263a5b;
+            font-weight: 600 !important;
+        }
+
+    label{
+       font-weight: 500;
+        font-size: 14px !important;
+        color: #6c757d !important;
+      
+        }
+
+
+
+        .common_box_input{
+            margin-bottom: 12px;
+            label{
+                font-weight: 500;
+                font-size: 14px !important;
+                color: #6c757d !important;
+             
+            }
+            .InputField{
+                background: #f6f6f6;
+                font-size: 12px !important;
+            }
+            .eyeIcon{
+                position: absolute;
+                top: 9px;
+                right: 10px;
+                cursor: pointer;
+
+                svg{
+                    font-size: 15px !important;
+                    color: black !important;
+                }
+            }
+
+        }
+        
+        .loginBtn{
+            background-color: var.$primary-color !important;
+            font-size: var.$btn-font-size !important;
+            padding: var.$btn-padding !important;
+            border-radius: var.$btn-border-radius !important;
+            text-transform: var.$btn-text-transform !important;
+            color:var.$btn-color;
+            margin-top:20px;
+            padding: 1rem!important;
+        }
+    }
+    .auth_footer{
+        margin-top: 20px;
+        font-size: 14px;
+        color: #212529;
+        a{
+            color: #284db3;
+            text-decoration: none;
+        }
+    }
+
+    
+    .forgetBtn{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .ForgetBox{
+        text-align: right !important;
+        width: 100%;
+    }
+
+    .optTimer{
+        position: relative !important;
+    }
+        .showOtpTimer{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 14px;
+        font-weight: 100 !important;
+        color: #6c757d;
+
+        }
+
+}
+
