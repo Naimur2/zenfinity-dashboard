@@ -1,28 +1,50 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Node.js CI/CD
+name: Docker Image CI
 
 on:
-  push:
-    branches: ['main']
+    push:
+        branches: ["master"]
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
 
 jobs:
-  build:
-    runs-on: self-hosted
+    run-on-aws-ec2:
+        runs-on: self-hosted
+        permissions:
+            contents: read
+            packages: write
 
-    strategy:
-      matrix:
-        node-version: [20.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        steps:
+            - uses: actions/checkout@v3
 
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - run: npm i
-      - run: npm run build
-      - run: pm2 restart all
+            - name: Create .env file
+              run: |
+                  rm -rf .env || true
+                  touch .env
+                  echo '${{ secrets.ENV_KEYS }}' >> .env
+                  cat .env
+            - name: Login to GitHub Container Registry on AWS EC2
+              run: |
+                  sudo docker login ghcr.io -u naimur2 -p ${{secrets.GH_KEY}}
+
+            - name: remove existing docker container
+              run: |
+                  sudo docker stop zinfinity-app || true
+                  sudo docker rm zinfinity-app || true
+
+            - name: remove existing docker image
+              run: |
+                  sudo docker rmi zenfinity || true
+
+            - name: remove existing docker volume
+              run: |
+                  sudo docker volume rm zinfinity-app-client || true
+
+            - name: build docker image
+              run: |
+                  sudo docker build -t zenfinity .
+
+            - name: Run docker container
+              run: |
+                  sudo docker run -d --name zinfinity-app --env-file .env -p 3000:3000 -v zinfinity-app-client:/app zenfinity
