@@ -44,6 +44,9 @@ jobs:
             - name: build docker image
               run: |
                   sudo docker build -t zenfinity .
+            - name: Remove Existing build cache
+              run: |
+                  sudo docker builder prune -f
 
             - name: Run docker container
               run: |
