@@ -13,6 +13,7 @@ module.exports = {
       "localhost",
       "admin.zenfinity.app",
       "zenfinity-prod.s3.ap-south-1.amazonaws.com",
+      "https://dz9e8fn36g1mq.cloudfront.net",
     ],
   },
 };
