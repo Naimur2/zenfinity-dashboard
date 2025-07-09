@@ -116,6 +116,7 @@ const CreateUpdateCourse = () => {
       .then((res) => res.data)
       .then((response) => {
         setCourseDetails(response?.data);
+        setImageUrl(response?.imageUrl);
       })
       .catch((err) => apiError(err));
   };
@@ -206,6 +207,7 @@ const CreateUpdateCourse = () => {
       })
       .then((res) => res.data)
       .then((response) => {
+        console.log('response', response);
         setImageUrl(response?.imageUrl);
         formik.setFieldValue(fieldName, response.data);
         setLoading(null)
@@ -349,6 +351,8 @@ const CreateUpdateCourse = () => {
       setShowCourseTypeCat(false);
     }
   }, [formik.values.typeId]);
+
+  console.log("thumbnail", `${imageUrl}/${formik.values.thumbnail}`);
 
   return (
     <Container maxWidth={"xl"} className={styles[`create-update-container`]}>
